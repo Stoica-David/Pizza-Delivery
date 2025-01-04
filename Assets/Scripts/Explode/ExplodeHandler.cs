@@ -20,7 +20,7 @@ public class ExplodeHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       Explode(Vector3.forward);
+       //Explode(Vector3.forward);
     }
 
     public void Explode(Vector3 externalForce)
