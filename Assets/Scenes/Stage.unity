@@ -656,9 +656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sectionPrefabs:
-  - {fileID: 8479625497886477272, guid: 8925a3f05c091154295b180f47f85ecd, type: 3}
   - {fileID: 5447981349264791256, guid: 283f83c4c8323a244befc96d726a321f, type: 3}
-  - {fileID: 5464708566996405706, guid: c504bd9c835eed24f8f1e5332b5ff4e0, type: 3}
 --- !u!114 &1629391712
 MonoBehaviour:
   m_ObjectHideFlags: 0
