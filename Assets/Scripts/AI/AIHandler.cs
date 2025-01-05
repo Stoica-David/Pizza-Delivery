@@ -47,6 +47,8 @@ public class AIHandler : MonoBehaviour
         if (isCarAhead)
             accelerationInput = -1;
 
+        //Randomly add a car either on right or left lane
+        
         float desiredPositionX = Utils.CarLanes[drivingInLane];
 
         float difference = desiredPositionX - transform.position.x;

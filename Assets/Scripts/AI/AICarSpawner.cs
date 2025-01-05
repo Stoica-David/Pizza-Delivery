@@ -7,7 +7,7 @@ public class AICarSpawner : MonoBehaviour
     [SerializeField]
     GameObject[] carAIPrefabs;
 
-    GameObject[] carAIPool = new GameObject[20];
+    GameObject[] carAIPool = new GameObject[40];
 
     Transform playerCarTransform;
 
@@ -80,7 +80,7 @@ public class AICarSpawner : MonoBehaviour
         if (carToSpawn == null)
             return;
 
-        Vector3 spawnPosition = new Vector3(0, 0, playerCarTransform.transform.position.z + 100);
+        Vector3 spawnPosition = new Vector3(0, 0, playerCarTransform.transform.position.z + 50);
 
         if(Physics.OverlapBoxNonAlloc(spawnPosition, Vector3.one *2, overlappedCheckCollider, Quaternion.identity, otherCarsLayerMask) > 0)
             return;
