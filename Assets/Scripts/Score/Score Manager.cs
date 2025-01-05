@@ -8,7 +8,9 @@ public class ScoreManager : MonoBehaviour
 
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI highScoreText;
+    public TextMeshProUGUI pizzasDeliveredText;
 
+    int pizzas = 0;
     int score = 0;
     int highScore = 0;
 
@@ -22,6 +24,7 @@ public class ScoreManager : MonoBehaviour
         highScore = PlayerPrefs.GetInt("highscore", 0);
         scoreText.text = "SCORE: " + score.ToString();
         highScoreText.text = "HIGHSCORE: " + highScore.ToString();
+        pizzasDeliveredText.text = "PIZZAS DELIVERED: " + pizzas.ToString();
     }
 
     void Update()
@@ -29,6 +32,11 @@ public class ScoreManager : MonoBehaviour
         
     }
 
+    public void AddPizza()
+    {
+        pizzas += 1;
+        pizzasDeliveredText.text = "PIZZAS DELIVERED: " + pizzas.ToString();
+    }
     public void ModifyPoints(int pointsToAdd = 1)
     {
         score += pointsToAdd;
