@@ -177,6 +177,11 @@ public class CarHandler : MonoBehaviour
         Time.timeScale = 1.0f;
     }
 
+    public void RestoreTimeCO()
+    {
+        Time.timeScale = 1.0f;
+    }
+
     //Events
     private void OnCollisionEnter(Collision collision)
     {

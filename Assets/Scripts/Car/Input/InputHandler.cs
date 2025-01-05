@@ -23,6 +23,8 @@ public class InputHandler : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+            carHandler.RestoreTimeCO();
         }
     }
 }
