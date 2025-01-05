@@ -38,6 +38,8 @@ public class CarHandler : MonoBehaviour
 
     bool isPlayer = true;
 
+    bool areLightsOn = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,11 +55,16 @@ public class CarHandler : MonoBehaviour
         //Rotate car model when "turning"
         gameModel.transform.rotation = Quaternion.Euler(0, rb.linearVelocity.x * 5, 0);
 
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            areLightsOn = !areLightsOn;
+        }
+        
         if (carMeshRender != null)
         {
             float desiredCarEmissiveColorMultiplier = 0f;
 
-            if (input.y < 0)
+            if (input.y < 0 || areLightsOn)
                 desiredCarEmissiveColorMultiplier = 4.0f;
 
             emissiveColorMultiplier = Mathf.Lerp(emissiveColorMultiplier, desiredCarEmissiveColorMultiplier, Time.deltaTime * 4);
