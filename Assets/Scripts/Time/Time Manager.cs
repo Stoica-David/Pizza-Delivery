@@ -50,6 +50,11 @@ public class TimeManager : MonoBehaviour
         {
             Minutes += 1;
             tempSecond = 0;
+
+            if(!CarHandler.instance.GetExploded())
+            {
+                ScoreManager.instance.ModifyPoints(1);
+            }
         }
     }
 
@@ -61,7 +66,7 @@ public class TimeManager : MonoBehaviour
             Hours++;
             minutes = 0;
         }
-        if (Hours >= 24)
+        if (Hours >= 8)
         {
             Hours = 0;
             Days++;
@@ -70,22 +75,22 @@ public class TimeManager : MonoBehaviour
 
     private void OnHoursChange(int value)
     {
-        if (value == 6)
+        if (value == 3)
         {
             StartCoroutine(LerpSkybox(skyboxNight, skyboxSunrise, 10f));
             StartCoroutine(LerpLight(graddientNightToSunrise, 10f));
         }
-        else if (value == 8)
+        else if (value == 4)
         {
             StartCoroutine(LerpSkybox(skyboxSunrise, skyboxDay, 10f));
             StartCoroutine(LerpLight(graddientSunriseToDay, 10f));
         }
-        else if (value == 18)
+        else if (value == 5)
         {
             StartCoroutine(LerpSkybox(skyboxDay, skyboxSunset, 10f));
             StartCoroutine(LerpLight(graddientDayToSunset, 10f));
         }
-        else if (value == 22)
+        else if (value == 6)
         {
             StartCoroutine(LerpSkybox(skyboxSunset, skyboxNight, 10f));
             StartCoroutine(LerpLight(graddientSunsetToNight, 10f));

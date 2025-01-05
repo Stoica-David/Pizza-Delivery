@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CarHandler : MonoBehaviour
 {
+    public static CarHandler instance;
+
     [SerializeField]
     Rigidbody rb;
 
@@ -39,6 +41,11 @@ public class CarHandler : MonoBehaviour
     bool isPlayer = true;
 
     bool areLightsOn = false;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -207,6 +214,13 @@ public class CarHandler : MonoBehaviour
 
         isExploded = true;
 
+        ScoreManager.instance.ModifyPoints(-10);
+
         StartCoroutine(SlowDownTimeCO());
+    }
+
+    public bool GetExploded()
+    {
+        return isExploded;
     }
 }
