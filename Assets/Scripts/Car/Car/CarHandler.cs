@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CarHandler : MonoBehaviour
 {
+    public static CarHandler instance;
+
     [SerializeField]
     Rigidbody rb;
 
@@ -36,10 +38,19 @@ public class CarHandler : MonoBehaviour
     //Exploded state
     bool isExploded = false;
 
+    bool isPlayer = true;
+
+    bool areLightsOn = false;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-
+        isPlayer = CompareTag("Player");
     }
 
     // Update is called once per frame
@@ -51,11 +62,16 @@ public class CarHandler : MonoBehaviour
         //Rotate car model when "turning"
         gameModel.transform.rotation = Quaternion.Euler(0, rb.linearVelocity.x * 5, 0);
 
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            areLightsOn = !areLightsOn;
+        }
+        
         if (carMeshRender != null)
         {
             float desiredCarEmissiveColorMultiplier = 0f;
 
-            if (input.y < 0)
+            if (input.y < 0 || areLightsOn)
                 desiredCarEmissiveColorMultiplier = 4.0f;
 
             emissiveColorMultiplier = Mathf.Lerp(emissiveColorMultiplier, desiredCarEmissiveColorMultiplier, Time.deltaTime * 4);
@@ -149,6 +165,11 @@ public class CarHandler : MonoBehaviour
         input = inputVector;
     }
 
+    public void SetMaxSpeed(float newMaxSpeed)
+    {
+        maxForwardVelocity = newMaxSpeed;
+    }
+
     IEnumerator SlowDownTimeCO()
     {
         while (Time.timeScale > 0.2f)
@@ -170,16 +191,36 @@ public class CarHandler : MonoBehaviour
         Time.timeScale = 1.0f;
     }
 
+    public void RestoreTimeCO()
+    {
+        Time.timeScale = 1.0f;
+    }
+
     //Events
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log($"Hit {collision.collider.name}");
+        //AI cars will only explode when they hit the player or a car part
+        if (!isPlayer)
+        {
+            if (collision.transform.root.CompareTag("Untagged"))
+                return;
+
+            if (collision.transform.root.CompareTag("CarAI"))
+                return;
+        }
 
         Vector3 velocity = rb.linearVelocity;
         explodeHandler.Explode(velocity * 45);
 
         isExploded = true;
 
+        ScoreManager.instance.ModifyPoints(-10);
+
         StartCoroutine(SlowDownTimeCO());
+    }
+
+    public bool GetExploded()
+    {
+        return isExploded;
     }
 }
