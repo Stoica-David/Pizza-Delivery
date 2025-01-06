@@ -19,10 +19,24 @@ public class CarHandler : MonoBehaviour
     [SerializeField]
     ExplodeHandler explodeHandler;
 
+    [Header("SFX")]
+    [SerializeField]
+    AudioSource carEngineAS;
+
+    [SerializeField]
+    AnimationCurve carPitchAC;
+
+    [SerializeField]
+    AudioSource carSkidAS;
+
+    [SerializeField]
+    AudioSource carCrashAS;
+
     //Max values
     float maxSteerVelocity = 2;
     float maxForwardVelocity = 30;
     int maxScoreUpdate = 500;
+    float carMaxSpeedPercentage = 0;
 
     //Multipliers
     float accelerationMultiplier = 3;
@@ -58,13 +72,22 @@ public class CarHandler : MonoBehaviour
     void Start()
     {
         isPlayer = CompareTag("Player");
+
+        if (isPlayer)
+        {
+            HealthManager.health = 3;
+            carEngineAS.Play();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         if (isExploded)
+        { 
+            FadeOutCarAudio();
             return;
+        }
 
         //Rotate car model when "turning"
         gameModel.transform.rotation = Quaternion.Euler(0, rb.linearVelocity.x * 5, 0);
@@ -87,6 +110,8 @@ public class CarHandler : MonoBehaviour
         }
 
         previousPosition = transform.position;
+
+        UpdateCarAudio();
     }
 
     private void FixedUpdate()
@@ -173,6 +198,34 @@ public class CarHandler : MonoBehaviour
         }
     }
 
+    void UpdateCarAudio()
+    {
+        if(!isPlayer) 
+            return;
+
+        float carMaxSpeed = rb.linearVelocity.z / maxForwardVelocity;
+
+        carEngineAS.pitch = carPitchAC.Evaluate(carMaxSpeed);
+
+        if (input.y < 0 && carMaxSpeed > 0.2f)
+        {
+            if (!carSkidAS.isPlaying)
+                carSkidAS.Play();
+            carSkidAS.volume = Mathf.Lerp(carSkidAS.volume, 1, Time.deltaTime * 10);
+        }
+        else
+        {
+            carSkidAS.volume = Mathf.Lerp(carSkidAS.volume, 0, Time.deltaTime * 30);
+        }
+    }
+
+    void FadeOutCarAudio()
+    {
+        if(!isPlayer) return;
+        carEngineAS.volume = Mathf.Lerp(carEngineAS.volume, 0, Time.deltaTime * 10);
+        carSkidAS.volume = Mathf.Lerp(carSkidAS.volume, 0, Time.deltaTime * 10);
+    }
+
     public void SetInput(Vector2 inputVector)
     {
         inputVector.Normalize();
@@ -257,6 +310,14 @@ public class CarHandler : MonoBehaviour
                 StartCoroutine(GetHurt());
             }
         }
+
+        carCrashAS.volume = carMaxSpeedPercentage;
+        carCrashAS.volume = Mathf.Clamp(carCrashAS.volume, 0.2f, 1);
+
+        carCrashAS.pitch = carMaxSpeedPercentage;
+        carCrashAS.pitch = Mathf.Clamp(carCrashAS.pitch, 0.2f, 1);
+
+        carCrashAS.Play();
     }
 
     IEnumerator GetHurt()
