@@ -27,6 +27,8 @@ public class InputHandler : MonoBehaviour
             carHandler.RestoreTimeCO();
 
             HealthManager.health = 3;
+
+            Time.timeScale = 1;
         }
     }
 }
