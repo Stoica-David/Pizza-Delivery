@@ -22,6 +22,7 @@ public class CarHandler : MonoBehaviour
     //Max values
     float maxSteerVelocity = 2;
     float maxForwardVelocity = 30;
+    int maxScoreUpdate = 500;
 
     //Multipliers
     float accelerationMultiplier = 3;
@@ -118,9 +119,9 @@ public class CarHandler : MonoBehaviour
             rb.linearVelocity = Vector3.zero;
 
         float multiplier = transform.position.z - previousPosition.z;
-        if (multiplier >= 0.02189209 && !isExploded)
+        if (multiplier >= 0.01189209 && !isExploded)
         {
-            ScoreManager.instance.ModifyPoints(5 * Math.Max(1, (int)(multiplier * 10)));
+            ScoreManager.instance.ModifyPoints(5 * Math.Min(Math.Max(1, (int)(multiplier * 10)), maxScoreUpdate));
         }
     }
 
