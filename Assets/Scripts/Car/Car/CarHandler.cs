@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -199,7 +200,6 @@ public class CarHandler : MonoBehaviour
     //Events
     private void OnCollisionEnter(Collision collision)
     {
-        //AI cars will only explode when they hit the player or a car part
         if (!isPlayer)
         {
             if (collision.transform.root.CompareTag("Untagged"))
@@ -207,20 +207,42 @@ public class CarHandler : MonoBehaviour
 
             if (collision.transform.root.CompareTag("CarAI"))
                 return;
+
+            gameObject.SetActive(false);
+
+            return;
         }
 
-        Vector3 velocity = rb.linearVelocity;
-        explodeHandler.Explode(velocity * 45);
+        HealthManager.health -= 1;
 
-        isExploded = true;
+        if (HealthManager.health <= 0)
+        {
+            Vector3 velocity = rb.linearVelocity;
+            explodeHandler.Explode(velocity * 45);
 
-        ScoreManager.instance.ModifyPoints(-10);
+            isExploded = true;
 
-        StartCoroutine(SlowDownTimeCO());
+            ScoreManager.instance.ModifyPoints(-10);
+
+            StartCoroutine(SlowDownTimeCO());
+        }
+        else
+        {
+            StartCoroutine(GetHurt());
+        }
     }
 
     public bool GetExploded()
     {
         return isExploded;
+    }
+
+    IEnumerator GetHurt()
+    {
+        rb.detectCollisions = false;
+        GetComponent<Animator>().SetLayerWeight(1, 1);
+        yield return new WaitForSeconds(4);
+        rb.detectCollisions = true;
+        GetComponent<Animator>().SetLayerWeight(1, 0);
     }
 }

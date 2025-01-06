@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 3779969078082515853}
   - component: {fileID: 2284371656880126664}
   - component: {fileID: 6256246785006494088}
+  - component: {fileID: 5285875884817934614}
   m_Layer: 7
   m_Name: Car Base PF
   m_TagString: Player
@@ -156,6 +157,28 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   meshCollider: {fileID: 773770022182245941}
+--- !u!95 &5285875884817934614
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6975423638380066958}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: aaf0097eb417b424ebaf5745e181f1b3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &3655839648116157003
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -248,7 +271,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -4374228700715370157, guid: 5dd0808562977284093a0174e16fcf92, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

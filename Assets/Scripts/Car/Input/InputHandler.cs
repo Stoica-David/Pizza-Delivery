@@ -25,6 +25,8 @@ public class InputHandler : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
             carHandler.RestoreTimeCO();
+
+            HealthManager.health = 3;
         }
     }
 }
