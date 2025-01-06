@@ -50,11 +50,6 @@ public class TimeManager : MonoBehaviour
         {
             Minutes += 1;
             tempSecond = 0;
-
-            if(!CarHandler.instance.GetExploded())
-            {
-                ScoreManager.instance.ModifyPoints(1);
-            }
         }
     }
 

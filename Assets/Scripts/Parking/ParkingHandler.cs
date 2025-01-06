@@ -22,7 +22,6 @@ public class ParkingZone : MonoBehaviour
 
             if (parkedTime >= requiredParkTime)
             {
-                Debug.Log("Parcarea reușită!");
                 ScoreManager.instance.ModifyPoints(50);
                 ScoreManager.instance.AddPizza();
                 isCarParked = false;

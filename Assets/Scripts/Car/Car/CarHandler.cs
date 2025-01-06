@@ -31,6 +31,8 @@ public class CarHandler : MonoBehaviour
     //Input
     Vector2 input = Vector2.zero;
 
+    private Vector3 previousPosition; 
+
     //Emissive property
     int _EmissionColor = Shader.PropertyToID("_EmissionColor");
     Color emissiveColor = Color.white;
@@ -46,6 +48,7 @@ public class CarHandler : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        previousPosition = transform.position;
     }
 
     // Start is called before the first frame update
@@ -79,6 +82,8 @@ public class CarHandler : MonoBehaviour
 
             carMeshRender.material.SetColor(_EmissionColor, emissiveColor * emissiveColorMultiplier);
         }
+
+        previousPosition = transform.position;
     }
 
     private void FixedUpdate()
@@ -111,6 +116,12 @@ public class CarHandler : MonoBehaviour
         //Force the car not to go backwards
         if (rb.linearVelocity.z <= 0)
             rb.linearVelocity = Vector3.zero;
+
+        float multiplier = transform.position.z - previousPosition.z;
+        if (multiplier >= 0.02189209 && !isExploded)
+        {
+            ScoreManager.instance.ModifyPoints(5 * Math.Max(1, (int)(multiplier * 10)));
+        }
     }
 
     void Accelerate()
@@ -214,6 +225,8 @@ public class CarHandler : MonoBehaviour
         }
 
         HealthManager.health -= 1;
+        ScoreManager.instance.ModifyPoints(-300);
+
 
         if (HealthManager.health <= 0)
         {
@@ -222,19 +235,12 @@ public class CarHandler : MonoBehaviour
 
             isExploded = true;
 
-            ScoreManager.instance.ModifyPoints(-10);
-
             StartCoroutine(SlowDownTimeCO());
         }
         else
         {
             StartCoroutine(GetHurt());
         }
-    }
-
-    public bool GetExploded()
-    {
-        return isExploded;
     }
 
     IEnumerator GetHurt()
