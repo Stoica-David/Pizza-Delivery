@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 
 public class CarHandler : MonoBehaviour
 {
@@ -35,8 +36,8 @@ public class CarHandler : MonoBehaviour
     //Max values
     float maxSteerVelocity = 2;
     float maxForwardVelocity = 30;
-    int maxScoreUpdate = 500;
     float carMaxSpeedPercentage = 0;
+    int maxScoreUpdate = 15;
 
     //Multipliers
     float accelerationMultiplier = 3;
@@ -60,7 +61,12 @@ public class CarHandler : MonoBehaviour
 
     bool areLightsOn = false;
 
-    bool canCollideWithAll = true;
+    bool isMoving = false;
+
+    public static bool canCollideWithAll = true;
+
+    public LayerMask layerToIgnore;
+    public LayerMask layerToIgnoreWith;
 
     private void Awake()
     {
@@ -78,6 +84,9 @@ public class CarHandler : MonoBehaviour
             HealthManager.health = 3;
             carEngineAS.Play();
         }
+
+        layerToIgnore.value = 7;
+        layerToIgnoreWith.value = 8;
     }
 
     // Update is called once per frame
@@ -126,14 +135,22 @@ public class CarHandler : MonoBehaviour
             //Move towards after a the car has exploded
             rb.MovePosition(Vector3.Lerp(transform.position, new Vector3(0, 0, transform.position.z), Time.deltaTime * 0.5f));
 
+            isMoving = false;
+
             return;
         }
 
         //Apply Acceleration
         if (input.y > 0)
+        {
+            isMoving = true;
             Accelerate();
+        }
         else
+        {
+            isMoving = false;
             rb.linearDamping = 0.2f;
+        }
 
         //Apply Brakes
         if (input.y < 0)
@@ -145,10 +162,13 @@ public class CarHandler : MonoBehaviour
         if (rb.linearVelocity.z <= 0)
             rb.linearVelocity = Vector3.zero;
 
-        float multiplier = transform.position.z - previousPosition.z;
-        if (multiplier >= 0.02189209 && !isExploded)
+        if (isMoving)
         {
-            ScoreManager.instance.ModifyPoints(5 * Math.Min(Math.Max(1, (int)(multiplier * 10)), maxScoreUpdate));
+            float multiplier = transform.position.z - previousPosition.z;
+            if (multiplier >= 0.02189209 && !isExploded)
+            {
+                ScoreManager.instance.ModifyPoints(5 * Math.Min(Math.Max(1, (int)(multiplier * 10)), maxScoreUpdate));
+            }
         }
     }
 
@@ -275,7 +295,8 @@ public class CarHandler : MonoBehaviour
             if (collision.transform.root.CompareTag("CarAI"))
                 return;
 
-            gameObject.SetActive(false);
+            if (canCollideWithAll)
+                gameObject.SetActive(false);
 
             return;
         }
@@ -322,10 +343,12 @@ public class CarHandler : MonoBehaviour
 
     IEnumerator GetHurt()
     {
-        canCollideWithAll = false;
         GetComponent<Animator>().SetLayerWeight(1, 1);
+        canCollideWithAll = false;
+        Physics.IgnoreLayerCollision(layerToIgnore, layerToIgnoreWith, true);
         yield return new WaitForSeconds(4);
-        canCollideWithAll = true;
         GetComponent<Animator>().SetLayerWeight(1, 0);
+        canCollideWithAll = true;
+        Physics.IgnoreLayerCollision(layerToIgnore, layerToIgnoreWith, false);
     }
 }

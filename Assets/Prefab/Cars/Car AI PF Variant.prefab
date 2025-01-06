@@ -12,6 +12,14 @@ PrefabInstance:
       propertyPath: model
       value: 
       objectReference: {fileID: 5154302821422838021}
+    - target: {fileID: 935717391789617759, guid: c300d37570817b14fbc546bdbd23ad18, type: 3}
+      propertyPath: layerToIgnore.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 935717391789617759, guid: c300d37570817b14fbc546bdbd23ad18, type: 3}
+      propertyPath: layerToIgnoreWith.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 1053804204372542014, guid: c300d37570817b14fbc546bdbd23ad18, type: 3}
       propertyPath: m_Layer
       value: 8
