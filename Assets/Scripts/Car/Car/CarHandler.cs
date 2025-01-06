@@ -46,6 +46,8 @@ public class CarHandler : MonoBehaviour
 
     bool areLightsOn = false;
 
+    bool canCollideWithAll = true;
+
     private void Awake()
     {
         instance = this;
@@ -119,7 +121,7 @@ public class CarHandler : MonoBehaviour
             rb.linearVelocity = Vector3.zero;
 
         float multiplier = transform.position.z - previousPosition.z;
-        if (multiplier >= 0.01189209 && !isExploded)
+        if (multiplier >= 0.02189209 && !isExploded)
         {
             ScoreManager.instance.ModifyPoints(5 * Math.Min(Math.Max(1, (int)(multiplier * 10)), maxScoreUpdate));
         }
@@ -225,31 +227,44 @@ public class CarHandler : MonoBehaviour
             return;
         }
 
-        HealthManager.health -= 1;
-        ScoreManager.instance.ModifyPoints(-300);
-
-
-        if (HealthManager.health <= 0)
+        if (!canCollideWithAll)
         {
-            Vector3 velocity = rb.linearVelocity;
-            explodeHandler.Explode(velocity * 45);
+            if (collision.transform.root.CompareTag("CarAI"))
+                return;
 
-            isExploded = true;
+            if (collision.transform.root.CompareTag("CarPart"))
+                return;
 
-            StartCoroutine(SlowDownTimeCO());
+            // ADD HERE ALL TAGS AGAINST WHICH THE CAR MUST BE IMMUNE
         }
         else
         {
-            StartCoroutine(GetHurt());
+            HealthManager.health -= 1;
+            ScoreManager.instance.ModifyPoints(-300);
+
+
+            if (HealthManager.health <= 0)
+            {
+                Vector3 velocity = rb.linearVelocity;
+                explodeHandler.Explode(velocity * 45);
+
+                isExploded = true;
+
+                StartCoroutine(SlowDownTimeCO());
+            }
+            else
+            {
+                StartCoroutine(GetHurt());
+            }
         }
     }
 
     IEnumerator GetHurt()
     {
-        rb.detectCollisions = false;
+        canCollideWithAll = false;
         GetComponent<Animator>().SetLayerWeight(1, 1);
         yield return new WaitForSeconds(4);
-        rb.detectCollisions = true;
+        canCollideWithAll = true;
         GetComponent<Animator>().SetLayerWeight(1, 0);
     }
 }
