@@ -5,9 +5,27 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: aea84111ec09b55408b2471c44db5587
+  - enabled: 1
+    path: Assets/Scenes/Infinite Runner.unity
+    guid: e92fa5ffbedc69b48b72880862ce1378
+  - enabled: 1
+    path: Assets/Scenes/Levels.unity
+    guid: b9ffc61ca64e57a4a9153c74a1c9228e
+  - enabled: 1
+    path: Assets/Scenes/Level 1.unity
+    guid: ee3d37b2c63ef3745b595f7edf2ce47a
+  - enabled: 1
+    path: Assets/Scenes/Level 2.unity
+    guid: a5bb140506eb189468220838a8ce434a
+  - enabled: 1
+    path: Assets/Scenes/Level 3.unity
+    guid: fd7f7cc0a3ea2f042bdbfc8eecea3ba6
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
