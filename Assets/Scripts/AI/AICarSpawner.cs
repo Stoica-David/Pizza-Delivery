@@ -1,19 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AICarSpawner : MonoBehaviour
 {
     [SerializeField]
     GameObject[] carAIPrefabs;
 
-    GameObject[] carAIPool = new GameObject[40];
+    GameObject[] carAIPool;
 
     Transform playerCarTransform;
 
     //Timing
     float timeLastCarSpawned = 0;
-    WaitForSeconds wait = new WaitForSeconds(0.5f);
+    WaitForSeconds wait;
 
     //Overlapped check
     [SerializeField]
@@ -25,6 +26,27 @@ public class AICarSpawner : MonoBehaviour
     {
         playerCarTransform = GameObject.FindGameObjectWithTag("Player").transform;
 
+        //check current scene
+        if(SceneManager.GetActiveScene().name == "Level 1")
+        {
+            carAIPool = new GameObject[40];
+            WaitForSeconds wait = new WaitForSeconds(0.5f);
+        }
+        else if (SceneManager.GetActiveScene().name == "Level 2")
+        {
+            carAIPool = new GameObject[60];
+            WaitForSeconds wait = new WaitForSeconds(0.3f);
+        }
+        else if (SceneManager.GetActiveScene().name == "Level 3")
+        {
+            carAIPool = new GameObject[80];
+            WaitForSeconds wait = new WaitForSeconds(0.2f);
+        }
+        else
+        {
+            carAIPool = new GameObject[40];
+            WaitForSeconds wait = new WaitForSeconds(0.2f);
+        }
 
         int prefabIndex = 0;
 
