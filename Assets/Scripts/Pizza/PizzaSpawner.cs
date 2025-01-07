@@ -71,7 +71,7 @@ public class PizzaSpawner : MonoBehaviour
         if (zoneToSpawn == null)
             return;
 
-        float fixedX = Random.value > 0.5f ? -2f : 2f;
+        float fixedX = Random.Range(2f, -2f);
         float fixedY = 0.2f;
         float spawnZ = playerCarTransform.position.z + 50;
 
