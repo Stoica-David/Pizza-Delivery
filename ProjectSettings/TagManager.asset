@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CarAI
   - CarPart
+  - Heart
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - CameraCollisionDetection
   - Car
   - CarAI
-  - 
+  - Heart
   - 
   - 
   - 

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SocialPlatforms;
 
 public class CarHandler : MonoBehaviour
@@ -305,13 +306,21 @@ public class CarHandler : MonoBehaviour
             if (collision.transform.root.CompareTag("CarAI"))
                 return;
 
-            if (canCollideWithAll)
-                gameObject.SetActive(false);
+            gameObject.SetActive(false);
 
             return;
         }
 
-        if (!canCollideWithAll)
+        if(collision.transform.root.CompareTag("Heart"))
+        {
+            HealthManager.health = Math.Min(++HealthManager.health, 3);
+
+            //if (HealthManager.health < 3)
+            //{
+            //    HealthManager.health++;
+            //}
+        }
+        else if (!canCollideWithAll)
         {
             if (collision.transform.root.CompareTag("CarAI"))
                 return;
@@ -388,5 +397,4 @@ public class CarHandler : MonoBehaviour
             }
         }
     }
-
 }

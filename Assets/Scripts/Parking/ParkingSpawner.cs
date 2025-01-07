@@ -77,6 +77,8 @@ public class ParkingZoneSpawner : MonoBehaviour
 
         Vector3 spawnPosition = new Vector3(fixedX, fixedY, spawnZ);
 
+        Debug.Log("Spawned PARKINGZONE Pos: " + spawnPosition);
+
         // Setăm poziția și activăm zona de parcare
         zoneToSpawn.transform.position = spawnPosition;
         zoneToSpawn.SetActive(true);
