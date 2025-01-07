@@ -18,7 +18,7 @@ public class ParkingZone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Untagged")) 
+        if (other.CompareTag("Player")) 
         {
             isCarParked = true;
         }
@@ -26,7 +26,7 @@ public class ParkingZone : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (isCarParked && other.CompareTag("Untagged"))
+        if (isCarParked && other.CompareTag("Player"))
         {
             parkedTime += Time.deltaTime;
 
@@ -60,7 +60,7 @@ public class ParkingZone : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Untagged"))
+        if (other.CompareTag("Player"))
         {
             
             isCarParked = false;

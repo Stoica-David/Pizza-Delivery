@@ -475,6 +475,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6260577826374022154}
     m_Modifications:
+    - target: {fileID: -4483791370842128274, guid: bc946d436e66bae48b34229f9b72f393, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7250192469697704838, guid: bc946d436e66bae48b34229f9b72f393, type: 3}
       propertyPath: m_Name
       value: streetlight (5)
@@ -674,6 +678,10 @@ PrefabInstance:
       propertyPath: orignalObject
       value: 
       objectReference: {fileID: 162435484}
+    - target: {fileID: 3065203214404585746, guid: c300d37570817b14fbc546bdbd23ad18, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 4948140956816336816, guid: c300d37570817b14fbc546bdbd23ad18, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
@@ -1682,6 +1690,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6260577826374022154}
     m_Modifications:
+    - target: {fileID: -4483791370842128274, guid: bc946d436e66bae48b34229f9b72f393, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7250192469697704838, guid: bc946d436e66bae48b34229f9b72f393, type: 3}
       propertyPath: m_Name
       value: streetlight (6)
@@ -2644,6 +2656,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6260577826374022154}
     m_Modifications:
+    - target: {fileID: -4483791370842128274, guid: bc946d436e66bae48b34229f9b72f393, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7250192469697704838, guid: bc946d436e66bae48b34229f9b72f393, type: 3}
       propertyPath: m_Name
       value: streetlight (7)
@@ -2786,6 +2802,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6260577826374022154}
     m_Modifications:
+    - target: {fileID: -4483791370842128274, guid: bc946d436e66bae48b34229f9b72f393, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7250192469697704838, guid: bc946d436e66bae48b34229f9b72f393, type: 3}
       propertyPath: m_Name
       value: streetlight (4)
@@ -3092,6 +3112,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 1404899851689681912, guid: cc02b51369b58b34fac319850789bb00, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 1744270005769746754, guid: cc02b51369b58b34fac319850789bb00, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3191,6 +3215,10 @@ PrefabInstance:
     - target: {fileID: 7871658986828305775, guid: cc02b51369b58b34fac319850789bb00, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7871658986828305775, guid: cc02b51369b58b34fac319850789bb00, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8870214027631157101, guid: cc02b51369b58b34fac319850789bb00, type: 3}
       propertyPath: m_Layer

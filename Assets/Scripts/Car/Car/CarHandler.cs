@@ -69,8 +69,11 @@ public class CarHandler : MonoBehaviour
 
     public static bool canCollideWithAll = true;
 
+    public static bool isHurt = false;
+
     public LayerMask layerToIgnore;
     public LayerMask layerToIgnoreWith;
+    public LayerMask otherLayerToIgnoreWith;
 
     public int currentPizzaBoxes;
 
@@ -100,6 +103,7 @@ public class CarHandler : MonoBehaviour
 
         layerToIgnore.value = 7;
         layerToIgnoreWith.value = 8;
+        otherLayerToIgnoreWith.value = 9;
         currentPizzaBoxes = pizzaBoxes.Count;
     }
 
@@ -184,6 +188,22 @@ public class CarHandler : MonoBehaviour
             {
                 ScoreManager.instance.ModifyPoints(5 * Math.Min(Math.Max(1, (int)(multiplier * 10)), maxScoreUpdate));
             }
+        }
+
+        if (HealthManager.health <= 0 && isPlayer)
+        {
+            Vector3 velocity = rb.linearVelocity;
+            explodeHandler.Explode(velocity * 45);
+
+            isExploded = true;
+
+            StartCoroutine(SlowDownTimeCO());
+        }
+
+        if (isHurt && isPlayer)
+        {
+            StartCoroutine(GetHurt());
+            isHurt = false;
         }
     }
 
@@ -325,10 +345,17 @@ public class CarHandler : MonoBehaviour
             if (collision.transform.root.CompareTag("CarPart"))
                 return;
 
+            if (collision.transform.root.CompareTag("Light"))
+                return;
+
             // ADD HERE ALL TAGS AGAINST WHICH THE CAR MUST BE IMMUNE
         }
         else
         {
+            if (collision.transform.root.CompareTag("Light"))
+                return;
+
+            Debug.Log("FROM CARHANDLER");
             HealthManager.health -= 1;
             ScoreManager.instance.ModifyPoints(-300);
 
@@ -362,10 +389,12 @@ public class CarHandler : MonoBehaviour
         GetComponent<Animator>().SetLayerWeight(1, 1);
         canCollideWithAll = false;
         Physics.IgnoreLayerCollision(layerToIgnore, layerToIgnoreWith, true);
+        Physics.IgnoreLayerCollision(layerToIgnore, otherLayerToIgnoreWith, true);
         yield return new WaitForSeconds(4);
         GetComponent<Animator>().SetLayerWeight(1, 0);
         canCollideWithAll = true;
         Physics.IgnoreLayerCollision(layerToIgnore, layerToIgnoreWith, false);
+        Physics.IgnoreLayerCollision(layerToIgnore, otherLayerToIgnoreWith, false);
     }
 
     public void HideTopPizzaBox()
@@ -382,8 +411,8 @@ public class CarHandler : MonoBehaviour
             }
         }
 
-        
     }
+
     public void ShowBottomPizzaBox()
     {
         for (int i = 0; i < pizzaBoxes.Count; i++) 
