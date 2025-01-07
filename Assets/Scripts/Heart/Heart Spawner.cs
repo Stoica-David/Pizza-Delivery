@@ -1,34 +1,37 @@
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class HeartSpawner : MonoBehaviour
 {
     [SerializeField]
-    GameObject[] heartPrefabs;
+    GameObject[] pizzaPrefab; // Prefab-urile pentru zonele de parcare
 
-    GameObject[] heartPool = new GameObject[10];
+    GameObject[] pizzaPool = new GameObject[40]; // Pool-ul de zone de parcare
 
     Transform playerCarTransform;
 
-    float timeLastHeartSpawned = 0;
-    WaitForSeconds wait = new WaitForSeconds(0.5f);
+    // Timing
+    float timeLastZoneSpawned = 0;
+    WaitForSeconds wait = new WaitForSeconds(20.0f); // Interval de așteptare între generări
 
+    // Start is called before the first frame update
     void Start()
     {
         playerCarTransform = GameObject.FindGameObjectWithTag("Player").transform;
 
         int prefabIndex = 0;
 
-        Debug.Log("heartPrefabs.Length: " + heartPrefabs.Length);
-
-        for (int i = 0; i < heartPrefabs.Length; i++)
+        // Inițializăm pool-ul de zone de parcare
+        for (int i = 0; i < pizzaPool.Length; i++)
         {
-            heartPool[i] = Instantiate(heartPrefabs[prefabIndex]);
-            heartPool[i].SetActive(false);
+            pizzaPool[i] = Instantiate(pizzaPrefab[prefabIndex]);
+            pizzaPool[i].SetActive(false);
 
             prefabIndex++;
 
-            if (prefabIndex >= heartPrefabs.Length - 1)
+            // Reîncepem de la începutul listei de prefabricate dacă am ajuns la capăt
+            if (prefabIndex > pizzaPrefab.Length - 1)
                 prefabIndex = 0;
         }
 
@@ -37,63 +40,64 @@ public class HeartSpawner : MonoBehaviour
 
     IEnumerator UpdateLessOftenCO()
     {
-        while(true)
+        while (true)
         {
-            CleanUpHeartsBeyondView();
-            SpawnNewHearts();
+            CleanUpZonesBeyondView();
+            SpawnNewParkingZones();
 
             yield return wait;
         }
     }
 
-    void SpawnNewHearts()
+    void SpawnNewParkingZones()
     {
-        if (Time.time - timeLastHeartSpawned < 3)
+        // Evităm generarea prea frecventă
+        if (Time.time - timeLastZoneSpawned < 3)
             return;
 
-        GameObject heartToSpawn = null;
+        GameObject zoneToSpawn = null;
 
-        foreach (GameObject heart in heartPool)
+        // Găsim o zonă de parcare inactivă în pool
+        foreach (GameObject parkingZone in pizzaPool)
         {
-            if (heart.activeInHierarchy)
+            if (parkingZone.activeInHierarchy)
                 continue;
 
-            heartToSpawn = heart;
+            zoneToSpawn = parkingZone;
             break;
         }
 
-        if (heartToSpawn == null)
+        // Dacă nu există zone disponibile, ieșim din funcție
+        if (zoneToSpawn == null)
             return;
 
-        float fixedX = Random.value > 0.5f ? -2f : 2f;
+        float fixedX = Random.Range(2f, -2f);
         float fixedY = 0.2f;
         float spawnZ = playerCarTransform.position.z + 50;
 
         Vector3 spawnPosition = new Vector3(fixedX, fixedY, spawnZ);
 
-        Debug.Log("Spawned Heart Pos: " +  spawnPosition);
+        // Setăm poziția și activăm zona de parcare
+        zoneToSpawn.transform.position = spawnPosition;
+        zoneToSpawn.SetActive(true);
 
-        heartToSpawn.transform.position = spawnPosition;
-        heartToSpawn.SetActive(true);
-
-        timeLastHeartSpawned = Time.time;
+        timeLastZoneSpawned = Time.time;
     }
 
-    void CleanUpHeartsBeyondView()
+    void CleanUpZonesBeyondView()
     {
-        foreach (GameObject heart in heartPool)
+        foreach (GameObject parkingZone in pizzaPool)
         {
-            //Skip inactive hearts
-            if (!heart.activeInHierarchy)
+            // Sărim peste zonele inactive
+            if (!parkingZone.activeInHierarchy)
                 continue;
 
-            //Check if heart is too far ahead
-            if (heart.transform.position.z - playerCarTransform.position.z > 200)
-                heart.SetActive(false);
+            // Dezactivăm zonele de parcare prea departe de jucător
+            if (parkingZone.transform.position.z - playerCarTransform.position.z > 200)
+                parkingZone.SetActive(false);
 
-            //Check if heart is too far behind
-            if (heart.transform.position.z - playerCarTransform.position.z < -50)
-                heart.SetActive(false);
+            if (parkingZone.transform.position.z - playerCarTransform.position.z < -50)
+                parkingZone.SetActive(false);
         }
     }
 }
