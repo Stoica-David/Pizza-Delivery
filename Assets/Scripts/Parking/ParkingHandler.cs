@@ -39,7 +39,7 @@ public class ParkingZone : MonoBehaviour
 
                 //gameObject.SetActive(false);
                 StartCoroutine(PlayAndDeactivate());
-                if (ScoreManager.instance.pizzas == 1 && SceneManager.GetActiveScene().name != "Infnite Runner")
+                if (ScoreManager.instance.pizzas == 1 && SceneManager.GetActiveScene().name != "Infinite Runner")
                 {
                     Debug.Log(SceneManager.GetActiveScene().name);
                     GameOverController.isOver = true;

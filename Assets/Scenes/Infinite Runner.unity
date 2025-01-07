@@ -1070,6 +1070,7 @@ MonoBehaviour:
   scoreText: {fileID: 1420715335}
   highScoreText: {fileID: 560325051}
   pizzasDeliveredText: {fileID: 968342353}
+  pizzas: 0
 --- !u!1 &828115177
 GameObject:
   m_ObjectHideFlags: 0
