@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,6 +32,9 @@ public class CarHandler : MonoBehaviour
 
     [SerializeField]
     AudioSource carCrashAS;
+
+    [SerializeField]
+    List<GameObject> pizzaBoxes;
 
     //Max values
     float maxSteerVelocity = 2;
@@ -70,8 +73,14 @@ public class CarHandler : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        isPlayer = CompareTag("Player");
+
+        if (isPlayer)
+        {
+            instance = this;
+        }
         previousPosition = transform.position;
+
     }
 
     // Start is called before the first frame update
@@ -83,6 +92,7 @@ public class CarHandler : MonoBehaviour
         {
             HealthManager.health = 3;
             carEngineAS.Play();
+            instance = this;
         }
 
         layerToIgnore.value = 7;
@@ -351,4 +361,30 @@ public class CarHandler : MonoBehaviour
         canCollideWithAll = true;
         Physics.IgnoreLayerCollision(layerToIgnore, layerToIgnoreWith, false);
     }
+
+    public void HideTopPizzaBox()
+    {
+        for (int i = pizzaBoxes.Count - 1; i >= 0; i--)  
+        {
+            GameObject pizzaBox = pizzaBoxes[i];
+            if (pizzaBox.activeSelf)  
+            {
+                pizzaBox.SetActive(false);  
+                break;  
+            }
+        }
+    }
+    public void ShowBottomPizzaBox()
+    {
+        for (int i = 0; i < pizzaBoxes.Count; i++) 
+        {
+            GameObject pizzaBox = pizzaBoxes[i];
+            if (!pizzaBox.activeSelf)  
+            {
+                pizzaBox.SetActive(true);  
+                break;  
+            }
+        }
+    }
+
 }

@@ -199,6 +199,16 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &371210827 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2793505082464975451, guid: cc02b51369b58b34fac319850789bb00, type: 3}
+  m_PrefabInstance: {fileID: 1102790637294235448}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &522170949 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8870214027631157101, guid: cc02b51369b58b34fac319850789bb00, type: 3}
+  m_PrefabInstance: {fileID: 1102790637294235448}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &532856900
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -227,6 +237,26 @@ PrefabInstance:
       propertyPath: carMeshRender
       value: 
       objectReference: {fileID: 162435486}
+    - target: {fileID: 935717391789617759, guid: c300d37570817b14fbc546bdbd23ad18, type: 3}
+      propertyPath: pizzaBoxes.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 935717391789617759, guid: c300d37570817b14fbc546bdbd23ad18, type: 3}
+      propertyPath: 'pizzaBoxes.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1857030690}
+    - target: {fileID: 935717391789617759, guid: c300d37570817b14fbc546bdbd23ad18, type: 3}
+      propertyPath: 'pizzaBoxes.Array.data[1]'
+      value: 
+      objectReference: {fileID: 522170949}
+    - target: {fileID: 935717391789617759, guid: c300d37570817b14fbc546bdbd23ad18, type: 3}
+      propertyPath: 'pizzaBoxes.Array.data[2]'
+      value: 
+      objectReference: {fileID: 371210827}
+    - target: {fileID: 935717391789617759, guid: c300d37570817b14fbc546bdbd23ad18, type: 3}
+      propertyPath: 'pizzaBoxes.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2013751555}
     - target: {fileID: 935717391789617759, guid: c300d37570817b14fbc546bdbd23ad18, type: 3}
       propertyPath: carPitchAC.m_Curve.Array.size
       value: 2
@@ -2122,6 +2152,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1744270005769746754, guid: cc02b51369b58b34fac319850789bb00, type: 3}
   m_PrefabInstance: {fileID: 1102790637294235448}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1857030690 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4637942982850458195, guid: cc02b51369b58b34fac319850789bb00, type: 3}
+  m_PrefabInstance: {fileID: 1102790637294235448}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1870909322
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2237,6 +2272,11 @@ GameObject:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6122187160266459557, guid: c300d37570817b14fbc546bdbd23ad18, type: 3}
   m_PrefabInstance: {fileID: 532856900}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2013751555 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1386214758917057408, guid: cc02b51369b58b34fac319850789bb00, type: 3}
+  m_PrefabInstance: {fileID: 1102790637294235448}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2066733899
 GameObject:

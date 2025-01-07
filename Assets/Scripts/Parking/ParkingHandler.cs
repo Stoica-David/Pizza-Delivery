@@ -24,6 +24,7 @@ public class ParkingZone : MonoBehaviour
             {
                 ScoreManager.instance.ModifyPoints(50);
                 ScoreManager.instance.AddPizza();
+                CarHandler.instance.HideTopPizzaBox();
                 isCarParked = false;
                 parkedTime = 0f;
                 gameObject.SetActive(false); 
