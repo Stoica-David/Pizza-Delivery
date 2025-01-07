@@ -112,6 +112,21 @@ MonoBehaviour:
   gameModel: {fileID: 6122187160266459557}
   carMeshRender: {fileID: 6538995794871046629}
   explodeHandler: {fileID: 2284371656880126664}
+  carEngineAS: {fileID: 0}
+  carPitchAC:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  carSkidAS: {fileID: 0}
+  carCrashAS: {fileID: 0}
+  layerToIgnore:
+    serializedVersion: 2
+    m_Bits: 128
+  layerToIgnoreWith:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &3779969078082515853
 MonoBehaviour:
   m_ObjectHideFlags: 0
