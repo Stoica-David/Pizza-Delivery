@@ -27,6 +27,7 @@ public class GameOverController : MonoBehaviour
         Time.timeScale = 1f;
         isOver = false;
         AudioListener.pause = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void Pause()
@@ -39,6 +40,10 @@ public class GameOverController : MonoBehaviour
     public void LoadMainMenu()
     {
         Time.timeScale = 1f;
+        //reset current scene
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
         SceneManager.LoadScene("MainMenu");
     }
 
