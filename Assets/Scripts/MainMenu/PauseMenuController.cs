@@ -5,7 +5,7 @@ public class PauseMenuController : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenuUI;
 
-    private bool isPaused = false;
+    public static bool isPaused = false;
 
     private void Start()
     {
@@ -31,6 +31,7 @@ public class PauseMenuController : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
+        AudioListener.pause = false;
     }
 
     void Pause()
@@ -38,6 +39,7 @@ public class PauseMenuController : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
+        AudioListener.pause = true;
     }
 
     public void LoadMainMenu()
