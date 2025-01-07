@@ -369,8 +369,10 @@ public class CarHandler : MonoBehaviour
             GameObject pizzaBox = pizzaBoxes[i];
             if (pizzaBox.activeSelf)  
             {
-                pizzaBox.SetActive(false);  
-                break;  
+                pizzaBox.SetActive(false);
+                ScoreManager.instance.ModifyPoints(50);
+                ScoreManager.instance.AddPizza();
+                break; 
             }
         }
     }
