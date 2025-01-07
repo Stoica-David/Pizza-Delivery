@@ -27,6 +27,8 @@ public class GameOverController : MonoBehaviour
         Time.timeScale = 1f;
         isOver = false;
         AudioListener.pause = false;
+        Physics.IgnoreLayerCollision(7, 8, false);
+        Physics.IgnoreLayerCollision(7, 9, false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -40,7 +42,6 @@ public class GameOverController : MonoBehaviour
     public void LoadMainMenu()
     {
         Time.timeScale = 1f;
-        //reset current scene
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 

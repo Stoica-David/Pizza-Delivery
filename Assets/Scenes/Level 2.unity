@@ -1195,6 +1195,7 @@ MonoBehaviour:
   scoreText: {fileID: 1420715335}
   highScoreText: {fileID: 560325051}
   pizzasDeliveredText: {fileID: 968342353}
+  pizzas: 0
 --- !u!1 &828115177
 GameObject:
   m_ObjectHideFlags: 0
@@ -1733,6 +1734,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 1404899851689681912, guid: cc02b51369b58b34fac319850789bb00, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 1744270005769746754, guid: cc02b51369b58b34fac319850789bb00, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1816,6 +1821,10 @@ PrefabInstance:
     - target: {fileID: 7871658986828305775, guid: cc02b51369b58b34fac319850789bb00, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7871658986828305775, guid: cc02b51369b58b34fac319850789bb00, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8870214027631157101, guid: cc02b51369b58b34fac319850789bb00, type: 3}
       propertyPath: m_Layer
@@ -2606,6 +2615,10 @@ PrefabInstance:
       propertyPath: orignalObject
       value: 
       objectReference: {fileID: 1315797543}
+    - target: {fileID: 3065203214404585746, guid: c300d37570817b14fbc546bdbd23ad18, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 4948140956816336816, guid: c300d37570817b14fbc546bdbd23ad18, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0

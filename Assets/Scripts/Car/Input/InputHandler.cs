@@ -29,6 +29,9 @@ public class InputHandler : MonoBehaviour
             HealthManager.health = 3;
 
             Time.timeScale = 1;
+
+            Physics.IgnoreLayerCollision(7, 8, false);
+            Physics.IgnoreLayerCollision(7, 9, false);
         }
     }
 }
