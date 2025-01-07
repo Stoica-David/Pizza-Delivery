@@ -15,7 +15,7 @@ public class HealthManager : MonoBehaviour
     {
         health = 3;
     }
-    // Update is called once per frame
+
     void Update()
     {
         foreach (Image img in hearts)

@@ -288,6 +288,8 @@ public class CarHandler : MonoBehaviour
         }
 
         Time.timeScale = 1.0f;
+
+        GameOverController.isOver = true;
     }
 
     public void RestoreTimeCO()
