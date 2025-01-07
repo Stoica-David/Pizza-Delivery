@@ -14,8 +14,13 @@ public class AIHandler : MonoBehaviour
     [SerializeField]
     MeshCollider meshCollider;
 
+    [Header("SFX")]
+    [SerializeField]
+    AudioSource honkAS;
+
     RaycastHit[] raycastHits = new RaycastHit[1];
     bool isCarAhead = false;
+    float carAheadDistance = 0f;
 
     //Lanes
     int drivingInLane = 0;
@@ -45,7 +50,15 @@ public class AIHandler : MonoBehaviour
         float steerInput = 0.0f;
 
         if (isCarAhead)
+        {
             accelerationInput = -1;
+            if(!honkAS.isPlaying)
+            {
+                honkAS.volume = Random.Range(0.2f, 0.6f);
+                honkAS.pitch = Random.Range(0.8f, 1.2f);
+                honkAS.Play();
+            }
+        }
 
         //Randomly add a car either on right or left lane
         
@@ -79,7 +92,11 @@ public class AIHandler : MonoBehaviour
         meshCollider.enabled = true;
 
         if (numberOfHits > 0)
+        {
+            carAheadDistance = (transform.position - raycastHits[0].point).magnitude;
             return true;
+        }
+
 
         return false;
     }

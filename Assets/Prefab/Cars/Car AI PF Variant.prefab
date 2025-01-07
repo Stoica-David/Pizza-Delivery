@@ -8,6 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 351441265811313114, guid: c300d37570817b14fbc546bdbd23ad18, type: 3}
+      propertyPath: m_Volume
+      value: 0.537
+      objectReference: {fileID: 0}
+    - target: {fileID: 351441265811313114, guid: c300d37570817b14fbc546bdbd23ad18, type: 3}
+      propertyPath: DopplerLevel
+      value: 2.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 351441265811313114, guid: c300d37570817b14fbc546bdbd23ad18, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 935717391789617759, guid: c300d37570817b14fbc546bdbd23ad18, type: 3}
       propertyPath: model
       value: 
@@ -88,10 +100,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 4948140956816336816, guid: c300d37570817b14fbc546bdbd23ad18, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5636056962004852239, guid: c300d37570817b14fbc546bdbd23ad18, type: 3}
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 6256246785006494088, guid: c300d37570817b14fbc546bdbd23ad18, type: 3}
+      propertyPath: honkAS
+      value: 
+      objectReference: {fileID: 7633206600925440461}
     - target: {fileID: 6975423638380066958, guid: c300d37570817b14fbc546bdbd23ad18, type: 3}
       propertyPath: m_Name
       value: Car AI PF Variant
@@ -117,12 +137,18 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5742672947431265243, guid: c300d37570817b14fbc546bdbd23ad18, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c300d37570817b14fbc546bdbd23ad18, type: 3}
 --- !u!1 &5154302821422838021 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3065203214404585746, guid: c300d37570817b14fbc546bdbd23ad18, type: 3}
+  m_PrefabInstance: {fileID: 7858228356235081751}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &7633206600925440461 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 351441265811313114, guid: c300d37570817b14fbc546bdbd23ad18, type: 3}
   m_PrefabInstance: {fileID: 7858228356235081751}
   m_PrefabAsset: {fileID: 0}
