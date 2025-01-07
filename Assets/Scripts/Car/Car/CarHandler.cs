@@ -39,13 +39,13 @@ public class CarHandler : MonoBehaviour
 
     //Max values
     float maxSteerVelocity = 2;
-    float maxForwardVelocity = 30;
+    float maxForwardVelocity = 15;
     float carMaxSpeedPercentage = 0;
     int maxScoreUpdate = 15;
 
     //Multipliers
     float accelerationMultiplier = 3;
-    float breaksMultiplier = 15;
+    float breaksMultiplier = 10;
     float steeringMultiplier = 5;
 
     //Input
@@ -311,16 +311,7 @@ public class CarHandler : MonoBehaviour
             return;
         }
 
-        if(collision.transform.root.CompareTag("Heart"))
-        {
-            HealthManager.health = Math.Min(++HealthManager.health, 3);
-
-            //if (HealthManager.health < 3)
-            //{
-            //    HealthManager.health++;
-            //}
-        }
-        else if (!canCollideWithAll)
+        if (!canCollideWithAll)
         {
             if (collision.transform.root.CompareTag("CarAI"))
                 return;
