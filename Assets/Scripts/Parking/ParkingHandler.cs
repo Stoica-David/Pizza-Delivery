@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ParkingZone : MonoBehaviour
 {
@@ -32,12 +33,17 @@ public class ParkingZone : MonoBehaviour
             if (parkedTime >= requiredParkTime)
             {
                 CarHandler.instance.HideTopPizzaBox();
+                
                 isCarParked = false;
                 parkedTime = 0f;
 
                 //gameObject.SetActive(false);
                 StartCoroutine(PlayAndDeactivate());
-
+                if (ScoreManager.instance.pizzas == 1 && SceneManager.GetActiveScene().name != "Infnite Runner")
+                {
+                    Debug.Log(SceneManager.GetActiveScene().name);
+                    GameOverController.isOver = true;
+                }
             }
         }
     }

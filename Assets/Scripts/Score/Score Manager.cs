@@ -11,7 +11,7 @@ public class ScoreManager : MonoBehaviour
     public TextMeshProUGUI highScoreText;
     public TextMeshProUGUI pizzasDeliveredText;
 
-    int pizzas = 0;
+    public int pizzas = 0;
     int score = 0;
     int highScore = 0;
 

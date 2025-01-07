@@ -72,6 +72,8 @@ public class CarHandler : MonoBehaviour
     public LayerMask layerToIgnore;
     public LayerMask layerToIgnoreWith;
 
+    public int currentPizzaBoxes;
+
     private void Awake()
     {
         isPlayer = CompareTag("Player");
@@ -98,11 +100,13 @@ public class CarHandler : MonoBehaviour
 
         layerToIgnore.value = 7;
         layerToIgnoreWith.value = 8;
+        currentPizzaBoxes = pizzaBoxes.Count;
     }
 
     // Update is called once per frame
     void Update()
     {
+        currentPizzaBoxes = pizzaBoxes.Count;
         if (isExploded)
         { 
             FadeOutCarAudio();
@@ -377,6 +381,8 @@ public class CarHandler : MonoBehaviour
                 break; 
             }
         }
+
+        
     }
     public void ShowBottomPizzaBox()
     {
