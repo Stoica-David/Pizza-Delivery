@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms;
 
 public class CarHandler : MonoBehaviour
@@ -67,7 +68,7 @@ public class CarHandler : MonoBehaviour
 
     bool isMoving = false;
 
-    public static bool canCollideWithAll = true;
+    public bool canCollideWithAll = true;
 
     public static bool isHurt = false;
 
@@ -198,6 +199,7 @@ public class CarHandler : MonoBehaviour
             isExploded = true;
 
             StartCoroutine(SlowDownTimeCO());
+
         }
 
         if (isHurt && isPlayer)
@@ -312,8 +314,8 @@ public class CarHandler : MonoBehaviour
         }
 
         Time.timeScale = 1.0f;
+        SceneManager.LoadScene("GameOver");
 
-        GameOverController.isOver = true;
     }
 
     public void RestoreTimeCO()

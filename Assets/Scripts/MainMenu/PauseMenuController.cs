@@ -37,6 +37,8 @@ public class PauseMenuController : MonoBehaviour
     void Pause()
     {
         pauseMenuUI.SetActive(true);
+        Physics.IgnoreLayerCollision(CarHandler.instance.layerToIgnore, CarHandler.instance.layerToIgnoreWith, false);
+        Physics.IgnoreLayerCollision(CarHandler.instance.layerToIgnore, CarHandler.instance.otherLayerToIgnoreWith, false); 
         Time.timeScale = 0f;
         isPaused = true;
         AudioListener.pause = true;
@@ -45,6 +47,7 @@ public class PauseMenuController : MonoBehaviour
     public void LoadMainMenu()
     {
         Time.timeScale = 1f;
+        pauseMenuUI.SetActive(false);
         SceneManager.LoadScene("MainMenu");
     }
 
