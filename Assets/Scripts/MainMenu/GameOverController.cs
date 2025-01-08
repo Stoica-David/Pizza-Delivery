@@ -29,7 +29,8 @@ public class GameOverController : MonoBehaviour
         AudioListener.pause = false;
         Physics.IgnoreLayerCollision(7, 8, false);
         Physics.IgnoreLayerCollision(7, 9, false);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        gameOverUI.SetActive(false);
+
     }
 
     public void Pause()
@@ -43,7 +44,8 @@ public class GameOverController : MonoBehaviour
     {
         Time.timeScale = 1f;
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        
+        gameOverUI.SetActive(false);
 
         SceneManager.LoadScene("MainMenu");
     }
