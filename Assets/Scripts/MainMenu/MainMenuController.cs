@@ -10,7 +10,7 @@ public class MainMenuController : MonoBehaviour
 
     public void ShowLevels()
     {
-        SceneManager.LoadScene("Levels");
+        SceneManager.LoadScene("Levels"); 
     }
 
     public void QuitGame()
