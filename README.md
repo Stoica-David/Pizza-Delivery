@@ -32,7 +32,7 @@ This is a **fun and dynamic Pizza Delivery game** developed in **Unity** using *
 ## 🎥 Gameplay Preview
 Check out the gameplay in action:
 
-[![Watch the Trailer](https://img.youtube.com/vi/YOUR_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=YOUR_VIDEO_ID_HERE)
+[![Watch the Trailer](https://img.youtube.com/vi/v=dUWvTKGpobw/0.jpg)](https://www.youtube.com/watch?v=dUWvTKGpobw)
 
 ## 🛠 Installation
 1. **Download & Install Unity** (minimum version: `Unity 2021.x`)
@@ -46,8 +46,8 @@ Check out the gameplay in action:
 
 ## 👨‍💻 Authors
 This game was developed as a team project by:
-- Roșca Silviu Ionuț • [github](https://github.com/stoica-david) • [david.stoica@student.unitbv.ro](mailto:david.stoica@student.unitbv.ro)
-- Tudor Ștefania Miruna • [github](https://github.com/stoica-david) • [david.stoica@student.unitbv.ro](mailto:david.stoica@student.unitbv.ro)
+- Roșca Silviu Ionuț • [github](https://github.com/RoscaSilviu) • [silviu.rosca@student.unitbv.ro](mailto:silviu.rosca@student.unitbv.ro)
+- Tudor Ștefania Miruna • [github](https://github.com/stefaniaTud003) • [stefania.tudor@student.unitbv.ro](mailto:stefania.tudor@student.unitbv.ro)
 - Stoica David-Ioan • [github](https://github.com/stoica-david) • [david.stoica@student.unitbv.ro](mailto:david.stoica@student.unitbv.ro)
 
 # ℹ️ Project info
