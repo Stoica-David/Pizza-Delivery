@@ -38,7 +38,7 @@ Check out the gameplay in action:
 1. **Download & Install Unity** (minimum version: `Unity 2021.x`)
 2. **Clone the Repository:**
    ```sh
-   git clone https://github.com/YOUR_TEAM/PizzaDeliveryGame.git
+   git clone https://github.com/Stoica-David/PizzaDeliveryGame.git
    cd PizzaDeliveryGame
    ```
 3. **Open the Project in Unity**
